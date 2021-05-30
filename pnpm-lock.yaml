@@ -16,8 +16,8 @@ specifiers:
   nodemon: ^2.0.7
   pg: ^8.6.0
   prettier: ^2.3.0
+  rimraf: ^3.0.2
   ts-node: ^10.0.0
-  tsc: ^2.0.3
   typeorm: ^0.2.32
   typescript: ^4.3.2
 
@@ -25,6 +25,7 @@ dependencies:
   node-telegram-bot-api: 0.53.0
   pg: 8.6.0
   typeorm: 0.2.32
+  typescript: 4.3.2
 
 devDependencies:
   '@types/node-telegram-bot-api': 0.51.1
@@ -40,9 +41,8 @@ devDependencies:
   module-alias: 2.2.2
   nodemon: 2.0.7
   prettier: 2.3.0
+  rimraf: 3.0.2
   ts-node: 10.0.0_typescript@4.3.2
-  tsc: 2.0.3
-  typescript: 4.3.2
 
 packages:
 
@@ -2707,11 +2707,6 @@ packages:
       yn: 3.1.1
     dev: true
 
-  /tsc/2.0.3:
-    resolution: {integrity: sha512-SN+9zBUtrpUcOpaUO7GjkEHgWtf22c7FKbKCA4e858eEM7Qz86rRDpgOU2lBIDf0fLCsEg65ms899UMUIB2+Ow==}
-    hasBin: true
-    dev: true
-
   /tsconfig-paths/3.9.0:
     resolution: {integrity: sha512-dRcuzokWhajtZWkQsDVKbWyY+jgcLC5sqJhg2PSgf4ZkH2aHPvaOY8YWGhmjb68b5qqTfasSsDO9k7RUiEmZAw==}
     dependencies:
@@ -2801,7 +2796,7 @@ packages:
     resolution: {integrity: sha512-zZ4hShnmnoVnAHpVHWpTcxdv7dWP60S2FsydQLV8V5PbS3FifjWFFRiHSWpDJahly88PRyV5teTSLoq4eG7mKw==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
+    dev: false
 
   /unbox-primitive/1.0.1:
     resolution: {integrity: sha512-tZU/3NqK3dA5gpE1KtyiJUrEB0lxnGkMFHptJ7q6ewdZ8s12QrODwNbhIJStmJkd1QDXa1NRA8aF2A1zk/Ypyw==}

@@ -4,8 +4,7 @@
     "target": "es5",
     "module": "commonjs",
     "outDir": "./out",
-    "rootDir": "./src",
-    "resolveJsonModule":true,
+    "resolveJsonModule": true,
     "removeComments": true,
     "isolatedModules": true,
     "strict": true,
@@ -31,6 +30,6 @@
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": true
   }
 }
