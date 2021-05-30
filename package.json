@@ -28,7 +28,8 @@
   },
   "scripts": {
     "dev": "nodemon out/index.js",
-    "build": "rimraf out && tsc -p tsconfig.json",
+    "tsc": "tsc -p tsconfig.json",
+    "build": "rimraf out && npm run tsc",
     "start": "node out/index.js",
     "start:prod": "npm run build && npm run start"
   },
