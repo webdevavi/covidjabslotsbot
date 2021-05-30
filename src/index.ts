@@ -11,4 +11,8 @@ const bot = initTelegramBot()
 // handle messages
 bot.on("message", (message) => handleMessages(bot, message))
 
+app.use("*", (_, res) =>
+  res.status(200).send("Welcome to CovidJabSlotsBot server.")
+)
+
 app.listen(PORT, () => console.log(`Server listening at port ${PORT}`))
