@@ -18,18 +18,18 @@
     "nodemon": "^2.0.7",
     "prettier": "^2.3.0",
     "rimraf": "^3.0.2",
-    "ts-node": "^10.0.0"
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
   },
   "dependencies": {
     "node-telegram-bot-api": "^0.53.0",
     "pg": "^8.6.0",
-    "typeorm": "^0.2.32",
-    "typescript": "^4.3.2"
+    "typeorm": "^0.2.32"
   },
   "scripts": {
     "dev": "nodemon out/index.js",
     "tsc": "./node_modules/typescript/bin/tsc",
-    "build": "tsc",
+    "build": "npm run tsc",
     "postinstall": "npm run build",
     "start": "node out/index.js"
   },
