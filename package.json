@@ -26,7 +26,10 @@
     "typeorm": "^0.2.32"
   },
   "scripts": {
-    "dev": "nodemon out/index.js"
+    "dev": "nodemon out/index.js",
+    "build": "tsc",
+    "start": "node out/index.js",
+    "start:prod": "npm run build && npm run start"
   },
   "_moduleAliases": {
     "@commands": "out/commands",
