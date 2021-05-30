@@ -29,9 +29,9 @@
   "scripts": {
     "dev": "nodemon out/index.js",
     "tsc": "./node_modules/typescript/bin/tsc",
-    "build": "rimraf out && tsc -p tsconfig.json",
-    "start": "node out/index.js",
-    "start:prod": "npm run build && npm run start"
+    "build": "tsc",
+    "postinstall": "npm run build",
+    "start": "node out/index.js"
   },
   "_moduleAliases": {
     "@commands": "out/commands",
