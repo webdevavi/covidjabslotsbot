@@ -30,7 +30,8 @@
       "@messages": ["messages"],
       "@models": ["models"],
       "@requests": ["requests"],
-      "@tasks": ["tasks"]
+      "@tasks": ["tasks"],
+      "@migrations/*": ["migrations/*"]
     },
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,

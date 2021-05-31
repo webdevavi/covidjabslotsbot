@@ -10,7 +10,10 @@ import { createConnection } from "typeorm"
 import cron from "node-cron"
 
 const main = async () => {
-  await createConnection(typeormConfig)
+  const con = await createConnection(typeormConfig)
+
+  con.runMigrations()
+
   const app = express()
 
   app.use(cors())

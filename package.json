@@ -51,6 +51,7 @@
     "@messages": "out/messages",
     "@models": "out/models",
     "@requests": "out/requests",
-    "@tasks": "out/tasks"
+    "@tasks": "out/tasks",
+    "@migrations": "out/migrations"
   }
 }
