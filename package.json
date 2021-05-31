@@ -42,6 +42,7 @@
     "@config": "out/config",
     "@constants": "out/constants",
     "@data": "out/data",
+    "@entities": "out/entities",
     "@handler": "out/handler"
   }
 }

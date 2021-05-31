@@ -4,6 +4,9 @@ import {
   handleStatesCommand,
   handleDistrictsCommand,
   handleEndCommand,
+  handleSubscriptionCommand,
+  handleRemoveCommand,
+  handleRemoveDistrictsCommand,
 } from "@commands"
 import TelegramBot, { Message } from "node-telegram-bot-api"
 
@@ -25,6 +28,18 @@ export const handleMessages = (bot: TelegramBot, message: Message) => {
 
     case /^\/end$/gi.test(text): {
       return handleEndCommand(bot, message)
+    }
+
+    case /^\/subscription$/gi.test(text): {
+      return handleSubscriptionCommand(bot, message)
+    }
+
+    case /^\/remove$/gi.test(text): {
+      return handleRemoveCommand(bot, message)
+    }
+
+    case /^-D[0-9]*$/gim.test(text): {
+      return handleRemoveDistrictsCommand(bot, message)
     }
 
     default: {

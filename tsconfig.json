@@ -26,8 +26,10 @@
       "@config": ["config"],
       "@constants": ["constants"],
       "@data/*": ["data/*"],
-      "@handler": ["handler"]
+      "@handler": ["handler"],
+      "@entities": ["entities"]
     },
+    "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true
