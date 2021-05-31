@@ -27,7 +27,9 @@
       "@constants": ["constants"],
       "@data/*": ["data/*"],
       "@handler": ["handler"],
-      "@entities": ["entities"]
+      "@entities": ["entities"],
+      "@models": ["models"],
+      "@requests": ["requests"]
     },
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
