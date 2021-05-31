@@ -22,14 +22,15 @@
     "moduleResolution": "node",
     "baseUrl": "./src",
     "paths": {
-      "@commands": ["commands"],
       "@config": ["config"],
       "@constants": ["constants"],
       "@data/*": ["data/*"],
       "@handler": ["handler"],
       "@entities": ["entities"],
+      "@messages": ["messages"],
       "@models": ["models"],
-      "@requests": ["requests"]
+      "@requests": ["requests"],
+      "@tasks": ["tasks"]
     },
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,

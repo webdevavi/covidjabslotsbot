@@ -2,10 +2,12 @@ require("module-alias/register")
 import { initTelegramBot, typeormConfig } from "@config"
 import { PORT } from "@constants"
 import { handleMessages } from "@handler"
+import { checkSlots } from "@tasks"
 import cors from "cors"
 import express from "express"
 import helmet from "helmet"
 import { createConnection } from "typeorm"
+import cron from "node-cron"
 
 const main = async () => {
   await createConnection(typeormConfig)
@@ -24,6 +26,8 @@ const main = async () => {
   bot.once("error", console.error)
 
   app.listen(PORT, () => console.log(`App listening on port ${PORT}`))
+
+  cron.schedule("*/10 * * * *", () => checkSlots(bot))
 }
 
 main()

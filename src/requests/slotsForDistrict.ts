@@ -8,8 +8,6 @@ export const getSlotsForDistrict = (districtId: number) => {
     "dd-MM-yyyy"
   )}`
 
-  console.log({ url })
-
   return axios
     .get<{ sessions: ISession[] }>(url, {
       headers: {

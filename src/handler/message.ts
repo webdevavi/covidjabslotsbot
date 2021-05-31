@@ -7,7 +7,7 @@ import {
   handleSubscriptionCommand,
   handleRemoveCommand,
   handleRemoveDistrictsCommand,
-} from "@commands"
+} from "@messages"
 import TelegramBot, { Message } from "node-telegram-bot-api"
 
 export const handleMessages = (bot: TelegramBot, message: Message) => {

@@ -1,4 +1,4 @@
-import { BaseEntity, Entity, ManyToMany, PrimaryColumn } from "typeorm"
+import { BaseEntity, Column, Entity, ManyToMany, PrimaryColumn } from "typeorm"
 import { District } from "./district"
 
 @Entity()
@@ -8,4 +8,7 @@ export class User extends BaseEntity {
 
   @ManyToMany(() => District, (dist) => dist.users)
   districts?: District[]
+
+  @Column({ nullable: true })
+  notifiedSessions?: string
 }
