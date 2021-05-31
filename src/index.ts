@@ -9,7 +9,7 @@ import helmet from "helmet"
 import { createConnection } from "typeorm"
 
 const main = async () => {
-  await createConnection(typeormConfig())
+  await createConnection(typeormConfig)
   const app = express()
 
   app.use(cors())
