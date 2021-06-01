@@ -46,7 +46,7 @@ export const handleNotification = async (
 
           user.notifiedSessions = JSON.stringify(notifiedSessions)
 
-          // await user.save()
+          await user.save()
 
           const messages = center.getMessages(slotsToNotify)
 
