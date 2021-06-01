@@ -1,10 +1,17 @@
 import { createLogger, transports, format } from "winston"
 const { combine, timestamp, label, printf } = format
 import chalk from "chalk"
+import utcToZonedTime from "date-fns-tz/utcToZonedTime"
+import formatDate from "date-fns/format"
 
 const customFormat = printf(
   ({ level, message, label, timestamp, durationMs }) => {
-    return `${chalk.yellow(timestamp)} ${chalk.magenta(`[${label}]`)} ${chalk[
+    return `${chalk.yellow(
+      formatDate(
+        utcToZonedTime(new Date(timestamp), "Asia/Kolkata"),
+        "yyyy-MM-dd pp"
+      )
+    )} ${chalk.magenta(`[${label}]`)} ${chalk[
       level === "error" ? "red" : "cyan"
     ](`${level}: ${message}`)}${
       durationMs ? " " + chalk.bgCyan.black(` ${durationMs / 1000}s `) : ""
