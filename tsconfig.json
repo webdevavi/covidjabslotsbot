@@ -31,7 +31,8 @@
       "@models": ["models"],
       "@requests": ["requests"],
       "@tasks": ["tasks"],
-      "@migrations/*": ["migrations/*"]
+      "@migrations/*": ["migrations/*"],
+      "@utils": ["utils"]
     },
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
