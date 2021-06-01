@@ -17,20 +17,14 @@ export const checkSlots = async (bot: TelegramBot) => {
 
       logger.log("info", `Checking slots for district ${id}`)
 
-      const sessions = await getSlotsForDistrict(id).then((slots) =>
-        slots.filter(
-          (slot) =>
-            slot.available_capacity_dose1 > 0 ||
-            slot.available_capacity_dose2 > 0
-        )
-      )
+      const centers = await getSlotsForDistrict(id)
 
       logger.profile(`Checked slots for district ${id}`)
 
-      if (sessions.length > 0) {
+      if (centers.length > 0) {
         users?.forEach(async ({ chatId }, index) => {
           await sleep(1000 * index) // wait for 1 second
-          handleNotification(bot, chatId, sessions)
+          handleNotification(bot, chatId, centers)
         })
       }
 
