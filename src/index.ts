@@ -7,10 +7,12 @@ import cors from "cors"
 import express from "express"
 import helmet from "helmet"
 import { createConnection } from "typeorm"
-import cron from "node-cron"
+import { logger, sleep } from "@utils"
 
 const main = async () => {
   const con = await createConnection(typeormConfig)
+
+  logger.info("Database connected")
 
   con.runMigrations()
 
@@ -22,15 +24,28 @@ const main = async () => {
 
   const bot = initTelegramBot()
 
-  console.log("Bot started")
+  logger.info("Bot started")
 
   bot.on("text", (message) => handleMessages(bot, message))
 
-  bot.once("error", console.error)
+  bot.on("error", logger.error)
 
-  app.listen(PORT, () => console.log(`App listening on port ${PORT}`))
+  // running the tasks almost infinite number of times
+  ;(async () => {
+    logger.info("Starting task for checking slots")
 
-  cron.schedule("*/10 * * * *", () => checkSlots(bot))
+    for (let i = 1; i < Number.MAX_SAFE_INTEGER; i++) {
+      logger.info(`Starting iteration #${i}`)
+      logger.profile(`Ended iteration #${i}`)
+      await checkSlots(bot)
+      logger.profile(`Ended iteration #${i}`)
+
+      logger.info("Paused task for 5 minutes")
+      await sleep(1000 * 60 * 5) // wait for 5 minutes
+    }
+  })()
+
+  app.listen(PORT, () => logger.info(`App listening on port ${PORT}`))
 }
 
 main()

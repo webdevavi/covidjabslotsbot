@@ -1,10 +1,11 @@
 import axios from "axios"
 import { format } from "date-fns"
 import { Center, ICenter } from "@models"
+import utcToZonedTime from "date-fns-tz/utcToZonedTime"
 
 export const getSlotsForDistrict = (districtId: number) => {
   const url = `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=${districtId}&date=${format(
-    new Date(),
+    utcToZonedTime(new Date(), "Asia/Kolkata"),
     "dd-MM-yyyy"
   )}`
 

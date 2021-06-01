@@ -1,18 +1,8 @@
 import { User } from "@entities"
+import { fromTimestamp, toTimestamp } from "@utils"
 import { add, isBefore } from "date-fns"
 import { Center } from "models/center"
 import TelegramBot from "node-telegram-bot-api"
-
-const fromTimestamp = (timestamp: string) => {
-  const _timestamp = Number(timestamp)
-  const datum = !Number.isNaN(_timestamp) ? _timestamp * 1000 : null
-  return datum ? new Date(datum) : null
-}
-
-function toTimestamp(strDate: string) {
-  var datum = Date.parse(strDate)
-  return datum / 1000
-}
 
 export const handleNotification = async (
   bot: TelegramBot,
