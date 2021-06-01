@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "chalk": "^4.1.1",
     "cors": "^2.8.5",
     "date-fns": "^2.22.1",
     "date-fns-tz": "^1.1.4",
@@ -34,7 +35,8 @@
     "node-cron": "^3.0.0",
     "node-telegram-bot-api": "^0.53.0",
     "pg": "^8.6.0",
-    "typeorm": "^0.2.32"
+    "typeorm": "^0.2.32",
+    "winston": "^3.3.3"
   },
   "scripts": {
     "dev": "nodemon out/index.js",
@@ -53,6 +55,7 @@
     "@models": "out/models",
     "@requests": "out/requests",
     "@tasks": "out/tasks",
-    "@migrations": "out/migrations"
+    "@migrations": "out/migrations",
+    "@utils": "out/utils"
   }
 }

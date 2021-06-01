@@ -1,5 +1,6 @@
 import { User } from "@entities"
 import { Session } from "@models"
+import { fromTimestamp, toTimestamp } from "@utils"
 import { add, isBefore } from "date-fns"
 import TelegramBot from "node-telegram-bot-api"
 
@@ -8,17 +9,6 @@ const getChunks = <T>(array: T[], chunkSize: number) => {
   for (var i = 0; i < array.length; i += chunkSize)
     R.push(array.slice(i, i + chunkSize))
   return R
-}
-
-const fromTimestamp = (timestamp: string) => {
-  const _timestamp = Number(timestamp)
-  const datum = !Number.isNaN(_timestamp) ? _timestamp * 1000 : null
-  return datum ? new Date(datum) : null
-}
-
-function toTimestamp(strDate: string) {
-  var datum = Date.parse(strDate)
-  return datum / 1000
 }
 
 export const handleNotification = async (

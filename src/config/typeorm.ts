@@ -9,7 +9,7 @@ export const typeormConfig: TypeormConfig = {
   user: DATABASE_USER as string,
   password: DATABASE_PASSWORD as string,
   type: "postgres",
-  logging: true,
+  logging: false,
   synchronize: true,
   entities: [User, District],
   migrations: ["out/migrations/*.js"],
