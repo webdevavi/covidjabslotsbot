@@ -1,3 +1,4 @@
+import { logger } from "@utils"
 import TelegramBot, { Message } from "node-telegram-bot-api"
 
 export const handleAnyCommand = async (
@@ -17,5 +18,5 @@ ${commands
   .join("\n")}
   `
 
-  return bot.sendMessage(chat.id, message)
+  return bot.sendMessage(chat.id, message).catch(logger.error)
 }

@@ -1,5 +1,7 @@
 import TelegramBot, { Message } from "node-telegram-bot-api"
 import districts from "@data/districts.json"
+import { User } from "@entities"
+import { logger } from "@utils"
 
 export const handleStatesCommand = (
   bot: TelegramBot,
@@ -42,5 +44,15 @@ D${exampleDistrict.districtId + 2}`
   const message =
     "Looks like you did not reply correctly, make sure you choose correct states' ids"
 
-  return bot.sendMessage(chat.id, message)
+  return bot.sendMessage(chat.id, message).catch((error) => {
+    if (
+      error.response?.body?.description?.includes("bot was blocked by the user")
+    ) {
+      User.delete({ chatId: chat.id })
+    }
+
+    return logger.error(
+      `Failed to send message to chat ${chat.id}; ${error.response?.body?.description}`
+    )
+  })
 }

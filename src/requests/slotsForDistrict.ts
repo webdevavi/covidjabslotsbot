@@ -2,6 +2,7 @@ import axios from "axios"
 import { format } from "date-fns"
 import { Center, ICenter } from "@models"
 import utcToZonedTime from "date-fns-tz/utcToZonedTime"
+import { logger } from "@utils"
 
 export const getSlotsForDistrict = (districtId: number) => {
   const url = `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=${districtId}&date=${format(
@@ -19,7 +20,7 @@ export const getSlotsForDistrict = (districtId: number) => {
     })
     .then(({ data }) => data.centers.map((center) => new Center(center)))
     .catch((error) => {
-      console.error(error)
+      logger.error(JSON.stringify(error.response?.data))
       return [] as Center[]
     })
 }

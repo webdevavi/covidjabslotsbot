@@ -1,5 +1,5 @@
 import { User } from "@entities"
-import { fromTimestamp, toTimestamp } from "@utils"
+import { fromTimestamp, logger, toTimestamp } from "@utils"
 import { add, isBefore } from "date-fns"
 import { Center } from "models/center"
 import TelegramBot from "node-telegram-bot-api"
@@ -46,13 +46,28 @@ export const handleNotification = async (
 
           user.notifiedSessions = JSON.stringify(notifiedSessions)
 
-          await user.save()
+          // await user.save()
 
           const messages = center.getMessages(slotsToNotify)
 
           messages.forEach((message, index) =>
             setTimeout(
-              () => bot.sendMessage(chatId, message, { parse_mode: "HTML" }),
+              () =>
+                bot
+                  .sendMessage(chatId, message, { parse_mode: "HTML" })
+                  .catch((error) => {
+                    if (
+                      error.response?.body?.description?.includes(
+                        "bot was blocked by the user"
+                      )
+                    ) {
+                      User.delete({ chatId })
+                    }
+
+                    return logger.error(
+                      `Failed to send message to chat ${chatId}; ${error.response?.body?.description}`
+                    )
+                  }),
               5000 * index
             )
           )
