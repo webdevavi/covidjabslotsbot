@@ -14,23 +14,11 @@ export const checkSlots = (bot: TelegramBot) =>
       districts.forEach(({ id, users }, index) =>
         setTimeout(
           () =>
-            getSlotsForDistrict(id)
-              .then((slots) =>
-                slots.filter(
-                  (slot) =>
-                    slot.available_capacity > 0 ||
-                    slot.available_capacity_dose1 > 0 ||
-                    slot.available_capacity_dose2 > 0
-                )
+            getSlotsForDistrict(id).then((centers) =>
+              users?.forEach(({ chatId }) =>
+                handleNotification(bot, chatId, centers)
               )
-              .then(
-                (slots) =>
-                  slots?.length &&
-                  slots.length > 0 &&
-                  users?.forEach(({ chatId }) =>
-                    handleNotification(bot, chatId, slots)
-                  )
-              ),
+            ),
           10000 * index
         )
       )
