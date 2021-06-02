@@ -39,7 +39,7 @@ export const handleNotification = async (
             ...slotsToNotify.map(
               (session) =>
                 `${session}:${toTimestamp(
-                  add(new Date(), { days: 1 }).toString()
+                  add(new Date(), { hours: 4 }).toString()
                 )}`
             ),
           ]
