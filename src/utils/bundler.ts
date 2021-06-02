@@ -28,21 +28,30 @@ export const bundleMessages = async (
     centers.map(async (center) => {
       // filtering the sessions that needs to be notified about
       // i.e. if session id does not exist in the list of notified sessions
-      const slotsToNotify = center.validSessionIds.filter(
-        (sessionId) =>
-          !notifiedSessions
-            ?.map((token) => new Token(token).payload)
-            .includes(sessionId)
-      )
+      const slotsToNotify = center.validSessions
+        .filter(
+          (session) =>
+            !notifiedSessions
+              ?.map((token) => new Token(token).payload)
+              .includes(session.getHash(center.center_id))
+        )
+        .map((session) => session)
 
       // pushing the new session ids that are being notified now
       // to the list of notified sessions
       notifiedSessions.push(
-        ...slotsToNotify.map((session) => Token.fromPayload(session).token)
+        ...slotsToNotify.map(
+          (session) =>
+            Token.fromPayload(session.getHash(center.center_id)).token
+        )
       )
 
       // pushing all the session messages to messages list
-      return messages.push(...center.getAllMessages(slotsToNotify))
+      return messages.push(
+        ...center.getAllMessages(
+          slotsToNotify.map((session) => session.session_id)
+        )
+      )
     })
   )
 

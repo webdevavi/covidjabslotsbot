@@ -67,17 +67,6 @@ export class Center implements ICenter {
     )
   }
 
-  private getSessionChunks(sessionsToNotify: string[]) {
-    const sessions = this.validSessions.filter((slot) =>
-      sessionsToNotify.includes(slot.session_id)
-    )
-
-    const R = []
-    for (let i = 0; i < sessions.length; i += 5)
-      R.push(sessions.slice(i, i + 5))
-    return R
-  }
-
   private get fullAddress() {
     return [
       this.name,
