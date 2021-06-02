@@ -59,7 +59,7 @@ export class Center implements ICenter {
     this.sessions = sessions.map((session) => new Session(session))
   }
 
-  private get validSessions() {
+  get validSessions() {
     return this.sessions.filter(
       (session) =>
         session.available_capacity_dose1 > 2 ||

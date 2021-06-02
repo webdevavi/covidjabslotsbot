@@ -41,7 +41,7 @@ const main = async () => {
       logger.profile(`Ended iteration #${i}`)
 
       logger.info("Paused task for 5 minutes")
-      await sleep(1000 * 60 * 5) // wait for 5 minutes
+      await sleep(1000 * 60) // wait for 5 minutes
     }
   })()
 

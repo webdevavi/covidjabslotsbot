@@ -1,3 +1,5 @@
+import crypto from "crypto"
+
 export interface ISession {
   session_id: string
   date: string
@@ -50,5 +52,17 @@ Capacity: Dose 1 \- <strong>${
 
 Slots: ${this.slots.join(" | ")}
 `
+  }
+
+  getHash(centerId: number) {
+    const data =
+      this.date.replace(/-/g, "").substring(0, 4) +
+      this.date.replace(/-/g, "").substring(6) +
+      this.vaccine +
+      centerId +
+      this.available_capacity_dose1 +
+      this.available_capacity_dose2
+
+    return crypto.createHash("md5").update(data).digest("base64")
   }
 }

@@ -1,7 +1,7 @@
 import { User } from "@entities"
 import { fromTimestamp, logger, toTimestamp } from "@utils"
 import { add, isBefore } from "date-fns"
-import { Center } from "models/center"
+import { Center } from "@models"
 import TelegramBot from "node-telegram-bot-api"
 
 export const handleNotification = async (
@@ -23,22 +23,24 @@ export const handleNotification = async (
           })
         : []
 
+      const msgs: string[] = []
+
       centers.forEach((center, index) =>
         setTimeout(async () => {
-          const slotsToNotify = center.validSessionIds.filter(
-            (sessionId) =>
+          const slotsToNotify = center.validSessions.filter(
+            (session) =>
               !notifiedSessions
                 ?.map(
                   (sessionWithTimestamp) => sessionWithTimestamp.split(":")?.[0]
                 )
-                .includes(sessionId)
+                .includes(session.getHash(center.center_id))
           )
 
           notifiedSessions = [
             ...notifiedSessions,
             ...slotsToNotify.map(
               (session) =>
-                `${session}:${toTimestamp(
+                `${session.getHash(center.center_id)}:${toTimestamp(
                   add(new Date(), { days: 1 }).toString()
                 )}`
             ),
@@ -48,7 +50,9 @@ export const handleNotification = async (
 
           await user.save()
 
-          const messages = center.getMessages(slotsToNotify)
+          const messages = center.getMessages(
+            slotsToNotify.map((session) => session.session_id)
+          )
 
           messages.forEach((message, index) =>
             setTimeout(
