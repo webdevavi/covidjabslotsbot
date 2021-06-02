@@ -19,7 +19,7 @@ export const handleNotification = async (
         ? notifiedSessions?.filter((session) => {
             const expiry = fromTimestamp(session?.split(":")?.[1] ?? "")
 
-            return expiry ? isBefore(new Date(), expiry) : false
+            return expiry ? isBefore(expiry, new Date()) : false
           })
         : []
 
