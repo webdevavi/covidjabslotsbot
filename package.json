@@ -10,6 +10,7 @@
     "@types/node-telegram-bot-api": "^0.51.1",
     "@typescript-eslint/eslint-plugin": "^4.25.0",
     "@typescript-eslint/parser": "^4.25.0",
+    "concurrently": "^6.2.0",
     "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-alias": "^1.1.2",
@@ -39,6 +40,7 @@
   },
   "scripts": {
     "dev": "nodemon out/index.js",
+    "dev:con": "concurrently \"tsc . -w\" \"npm run dev\"",
     "tsc": "./node_modules/typescript/bin/tsc",
     "build": "npm run tsc",
     "start": "node out/index.js",
