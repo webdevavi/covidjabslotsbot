@@ -8,7 +8,7 @@ export class Token {
     this.token = token
   }
 
-  static fromPayload(payload: string, hours = 4): Token {
+  static fromPayload(payload: string, hours = 8): Token {
     return new Token(
       `${payload}:${toTimestamp(add(new Date(), { hours }).toString())}`
     )
