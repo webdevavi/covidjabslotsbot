@@ -56,9 +56,12 @@ export const bundleMessages = async (
   const chunks = chunkify(messages)
 
   // sending message to user for each chunk
-  return chunks.map((messages) =>
-    messages.join(
-      "\n\n\u{2796}\u{2796}\u{2796}  \u{2796}\u{2796}\u{2796}  \u{2796}\u{2796}\u{2796}\n\n"
-    )
+  return chunks.map(
+    (messages) =>
+      `${messages.join(
+        "\n\n\u{2796}\u{2796}\u{2796}  \u{2796}\u{2796}\u{2796}  \u{2796}\u{2796}\u{2796}\n\n"
+      )}
+
+<em><strong>Spammy?</strong> Use <strong>/end</strong> to stop receiving updates immediately.</em>`
   )
 }
