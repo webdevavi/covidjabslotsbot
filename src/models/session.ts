@@ -38,20 +38,10 @@ export class Session implements ISession {
   }
 
   get message() {
-    return `\u{1F195} <strong>Date: ${this.date}</strong> \u{1F195}
+    return `\u{1F195} <strong>[${this.vaccine}]</strong>  <strong>[Age ${this.min_age_limit}+]</strong> \u{1F195}
 
-<strong>[${this.vaccine}]</strong>  <strong>[Age ${
-      this.min_age_limit
-    }+]</strong> 
-      
-Capacity: Dose 1 \- <strong>${
-      this.available_capacity_dose1
-    } Slots</strong> | Dose 2 \- <strong>${
-      this.available_capacity_dose2
-    } Slots</strong>
-
-Slots: ${this.slots.join(" | ")}
-`
+<strong>Date: ${this.date}</strong>      
+Capacity: Dose 1 \- <strong>${this.available_capacity_dose1} Slots</strong> | Dose 2 \- <strong>${this.available_capacity_dose2} Slots</strong>`
   }
 
   getHash(centerId: number) {

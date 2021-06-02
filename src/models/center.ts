@@ -99,27 +99,19 @@ export class Center implements ICenter {
     }`
   }
 
-  private get header() {
+  getAllMessages = (sessionsToNotify: string[]) => {
     const address = this.fullAddress
 
-    return `Center:  <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-      address
-    )}"><strong>${address}</strong></a>
-
-${this.fees}`
-  }
-
-  getMessages(sessionsToNotify: string[]) {
-    return this.getSessionChunks(sessionsToNotify).map(
-      (sessions) =>
-        `${this.header}
-
-${sessions
-  .map((session) => session.message)
-  .join(
-    "\n\n\u{2796}\u{2796}\u{2796}  \u{2796}\u{2796}\u{2796}  \u{2796}\u{2796}\u{2796}\n\n"
-  )}`
-    )
+    return this.validSessions
+      .filter((session) => sessionsToNotify.includes(session.session_id))
+      .map(
+        (session) =>
+          `${session.message}
+${this.fees}
+Center:  <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+            address
+          )}"><strong>${address}</strong></a>`
+      )
   }
 
   get validSessionIds() {
