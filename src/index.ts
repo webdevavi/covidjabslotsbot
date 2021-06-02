@@ -2,7 +2,7 @@ require("module-alias/register")
 import { initTelegramBot, typeormConfig } from "@config"
 import { PORT } from "@constants"
 import { handleMessages } from "@handler"
-import { runSlotChecks } from "@tasks"
+import { runSlotChecks, sendDonateReminder } from "@tasks"
 import cors from "cors"
 import express from "express"
 import helmet from "helmet"
@@ -32,6 +32,9 @@ const main = async () => {
 
   // running the tasks almost infinite number of times
   runSlotChecks(bot)
+
+  // send donate reminders
+  sendDonateReminder(bot)
 
   app.listen(PORT, () => logger.info(`App listening on port ${PORT}`))
 }

@@ -33,6 +33,7 @@
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "module-alias": "^2.2.2",
+    "node-cron": "^3.0.0",
     "node-telegram-bot-api": "^0.53.0",
     "pg": "^8.6.0",
     "typeorm": "^0.2.32",
