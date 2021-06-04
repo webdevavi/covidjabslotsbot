@@ -16,17 +16,11 @@ Or you can just say Hi \u{1F44B} at @webdevavi and share your feedback with me.
 Thanks! \u{1F600}`
 
 export const sendDonateReminder = async (bot: TelegramBot) => {
-  // at 10AM
-  scheduleReminders("0 10 * * *", bot)
+  // at 1PM
+  scheduleReminders("0 13 * * *", bot)
 
-  // at 2PM
-  scheduleReminders("0 14 * * *", bot)
-
-  // at 6PM
-  scheduleReminders("0 18 * * *", bot)
-
-  // at 10PM
-  scheduleReminders("0 22 * * *", bot)
+  // at 9PM
+  scheduleReminders("0 21 * * *", bot)
 }
 
 const scheduleReminders = (expression: string, bot: TelegramBot) =>
