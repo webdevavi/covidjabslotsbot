@@ -36,14 +36,34 @@ const scheduleReminders = (expression: string, bot: TelegramBot) =>
   })
 
 const sendReminders = async (bot: TelegramBot) => {
-  const users = await User.find()
+  const users = await User.find({ relations: ["districts"] }).then((users) =>
+    users.filter((user) => user.districts?.length && user.districts.length > 0)
+  )
 
   if (users.length > 0) {
-    logger.info("Starting to send donate reminders")
+    logger.info(`Starting to send donate reminders to ${users.length} chats`)
     logger.profile("Ended sending donate reminders")
     for (let i = 0; i < users.length; i++) {
-      await bot.sendMessage(users[i].chatId, message)
-      users[i + 1] && (await sleep(1000 * 5)) // wait for 5 seconds
+      const { chatId } = users[i]
+
+      await sleep(1000 * 5) // wait for 5 seconds
+
+      try {
+        logger.info(`Sending donate reminder to chat ${chatId}`)
+        await bot.sendMessage(chatId, message)
+      } catch (error) {
+        logger.error(
+          `Failed to send message to chat ${chatId}; ${error.response?.body?.description}`
+        )
+
+        if (
+          error.response?.body?.description?.includes(
+            "bot was blocked by the user"
+          )
+        ) {
+          User.delete({ chatId })
+        }
+      }
     }
     logger.profile("Ended sending donate reminders")
   }
